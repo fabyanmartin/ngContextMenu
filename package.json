@@ -18,8 +18,8 @@
   ],
   "license": "MIT",
   "bugs": {
-    "urls": ["https://github.com/Wildhoney/ngContextMenu/issues",
-      "https://github.com/fabyanmartin/ngContextMenu/issues"]
+    "url":
+      "https://github.com/fabyanmartin/ngContextMenu/issues"
   },
   "homepage": ["https://github.com/Wildhoney/ngContextMenu",
     "https://github.com/fabyanmartin/ngContextMenu"],
