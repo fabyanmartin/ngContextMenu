@@ -7,9 +7,7 @@ ngContextMenu
 &nbsp;
 ![License MIT](http://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)
 
-* 
-* **Bower:** `bower install ng-context-menu`
-* 
+* **Bower:** `bower install ng-context-menu` 
 
 # Getting Started
 
