@@ -7,9 +7,9 @@ ngContextMenu
 &nbsp;
 ![License MIT](http://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)
 
-* **Heroku**: [http://ng-contextmenu.herokuapp.com/](http://ng-contextmenu.herokuapp.com/)
-* **Bower:** `bower install ng-contextmenu`
-* **NPM:** `npm install ng-contextmenu`
+* 
+* **Bower:** `bower install ng-context-menu`
+* 
 
 # Getting Started
 
@@ -46,6 +46,15 @@ ul.menu {
 ```
 
 Now when you test your newly setup context menu, a right click on the node with the `data-context-menu` attribute will open the context menu. Voila!
+
+## Events
+An event called 'context-menu/created' can be bound to so that you can have the context menu element without querying the DOM.
+
+```javascript
+$scope.$on('context-menu/created', function (event, menu) {
+//Do something here
+});
+```
 
 ## Service
 
