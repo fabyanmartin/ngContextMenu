@@ -4,8 +4,8 @@
 
     /**
      * @module ngContextMenu
-     * @author Adam Timberlake
-     * @link https://github.com/Wildhoney/ngContextMenu
+     * @author Fabyan Martin
+     * @link https://github.com/fabyanmartin/ngContextMenu
      */
     var module = $angular.module('ngContextMenu', []);
 
@@ -18,8 +18,8 @@
     /**
      * @module ngContextMenu
      * @service ContextMenu
-     * @author Adam Timberlake
-     * @link https://github.com/Wildhoney/ngContextMenu
+     * @author Fabyan Martin
+     * @link https://github.com/fabyanmartin/ngContextMenu
      */
     module.factory('contextMenu', ['$rootScope', function contextMenuService($rootScope) {
 
@@ -38,12 +38,12 @@
     /**
      * @module ngContextMenu
      * @directive contextMenu
-     * @author Adam Timberlake
-     * @link https://github.com/Wildhoney/ngContextMenu
+     * @author Fabyan Martin
+     * @link https://github.com/fabyanmartin/ngContextMenu
      */
-    module.directive('contextMenu', ['$timeout', '$interpolate', '$compile', 'contextMenu', '$templateRequest', '$sce',
+    module.directive('contextMenu', ['$timeout', '$interpolate', '$compile', 'contextMenu', '$templateRequest', '$sce', '$rootScope',
 
-        function contextMenuDirective($timeout, $interpolate, $compile, contextMenu, $templateRequest, $sce) {
+        function contextMenuDirective($timeout, $interpolate, $compile, contextMenu, $templateRequest, $sce, rootScope) {
 
             return {
 
@@ -106,7 +106,7 @@
 
                     scope.$on('context-menu/close', closeMenu);
                     scope.$on('$destroy', closeMenu);
-                    
+
                     /**
                      * @method getModel
                      * @return {Object}
@@ -141,9 +141,23 @@
                         }
 
                         $templateRequest($sce.getTrustedResourceUrl(attributes.contextMenu)).then(function then(template) {
-
-                            var compiled = $compile(template)($angular.extend(getModel())),
+                            var compiled,menu;
+                            if(model){
+                                compiled = $compile(template)($angular.extend(getModel()));
                                 menu = $angular.element(compiled);
+                            }
+                            else{
+                                var elem = $angular.element(template);
+                                if(elem && elem.length > 0){
+                                    for (var i = 0; i < elem.length; i++) {
+                                        if(elem[i].nodeType === 1){
+                                            menu = $angular.element(elem[i]);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
 
                             // Determine whether to append new, or replace an existing.
                             switch (strategy) {
@@ -167,6 +181,9 @@
 
                             scope.menu = menu;
                             scope.menu.bind('click', closeMenu);
+
+                            //Broadcast event so that we can have the added element without searching the dom
+                            rootScope.$broadcast('context-menu/created',menu)
 
                         });
 

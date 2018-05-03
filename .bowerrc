@@ -1,4 +1,4 @@
 {
     "directory" : "example/js/vendor",
-    "interactive": false
+    "interactive": true
 }

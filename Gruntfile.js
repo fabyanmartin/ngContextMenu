@@ -26,7 +26,7 @@ module.exports = function(grunt) {
          */
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> by <%= pkg.author %> created on <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                banner: '/*! <%= pkg.name %> by <%= pkg.authors %> created on <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
                 src: ['dist/<%= pkg.name %>.js'],

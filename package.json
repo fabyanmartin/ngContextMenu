@@ -1,6 +1,6 @@
 {
   "name": "ng-contextmenu",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Handcraft your very own context menus for a richer UX!",
   "main": "dist/ng-contextmenu.js",
   "scripts": {
@@ -10,25 +10,38 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wildhoney/ngContextMenu.git"
+    "urls": ["https://github.com/Wildhoney/ngContextMenu.git",
+      "https://github.com/fabyanmartin/ngContextMenu"]
   },
-  "author": "Adam Timberlake <adam.timberlake@gmail.com>",
+  "authors": [
+    "Adam Timberlake <adam.timberlake@gmail.com>",
+    "Fabyan Martin <fabyan.martin1@gmail.com"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Wildhoney/ngContextMenu/issues"
+    "urls": ["https://github.com/Wildhoney/ngContextMenu/issues",
+      "https://github.com/fabyanmartin/ngContextMenu"]
   },
-  "homepage": "https://github.com/Wildhoney/ngContextMenu",
+  "homepage": ["https://github.com/Wildhoney/ngContextMenu",
+    "https://github.com/fabyanmartin/ngContextMenu"],
   "devDependencies": {
     "bower": "~1.8.2",
     "express": "^4.14.0",
-    "grunt": "~1.0.1",
-    "grunt-cli": "~1.2.0",
-    "grunt-contrib-compress": "~1.4.3",
-    "grunt-contrib-concat": "~1.0.1",
-    "grunt-contrib-copy": "~1.0.0",
-    "grunt-contrib-jasmine": "~1.1.0",
-    "grunt-contrib-jshint": "~1.1.0",
-    "grunt-contrib-uglify": "~3.2.1",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt": "^0.4.5",
+    "grunt-bower": "^0.21.0",
+    "grunt-bump": "^0.7.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-filerev": "^2.3.1",
+    "grunt-html2js": "^0.3.5",
+    "grunt-ng-annotate": "^1.0.1",
+    "grunt-pakman": "^0.1.57",
+    "grunt-script-link-tags": "^1.0.2",
+    "grunt-usemin": "^3.1.1"
   }
 }
