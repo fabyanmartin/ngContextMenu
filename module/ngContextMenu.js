@@ -146,18 +146,7 @@
                         $templateRequest($sce.getTrustedResourceUrl(attributes.contextMenu)).then(function then(template) {
 
                             var menu = $angular.element(template);
-
-
-                            // Determine whether to append new, or replace an existing.
-                            switch (strategy) {
-                                case ('append'):
-                                    angular.element($document.body).append(menu);
-                                    break;
-                                default:
-                                    scope.menu.replaceWith(menu);
-                                    break;
-                            }
-
+                            //Apply css before we compile the element
                             menu.css({
                                 position: attributes.contextMenuPosition || 'fixed',
                                 top: 0,
@@ -167,13 +156,30 @@
                                     y: scope.position.y
                                 })
                             });
-                            //Compile after added to the DOM so that we can correctly apply css
-                            $compile(menu)($angular.extend(getModel()));
-                            scope.menu = menu;
-                            scope.menu.bind('click', closeMenu);
+
+
+                            //Compile the menu
+                            var compiled = $compile(menu)($angular.extend(getModel()));
+                            var parent = $angular.element('<div></div>');
+                            parent.html(compiled);
+
+
+                            // Determine whether to append new, or replace an existing.
+                            switch (strategy) {
+                                case ('append'):
+                                    angular.element($document.body).append(parent);
+                                    break;
+                                default:
+                                    scope.menu.replaceWith(parent);
+                                    break;
+                            }
+
+
+                            scope.menu = parent;
+                            parent.bind('click', closeMenu);
 
                             //Broadcast event so that we can have the added element without searching the dom
-                            rootScope.$broadcast('context-menu/created',menu)
+                            rootScope.$broadcast('context-menu/created',parent)
 
                         });
 
