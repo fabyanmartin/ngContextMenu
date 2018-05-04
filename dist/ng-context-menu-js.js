@@ -168,7 +168,7 @@
                                 })
                             });
                             //Compile after added to the DOM so that we can correctly apply css
-                            $compile(menu)(scope);
+                            $compile(menu)($angular.extend(getModel()));
                             scope.menu = menu;
                             scope.menu.bind('click', closeMenu);
 
