@@ -5,6 +5,7 @@
     /**
      * @module ngContextMenu
      * @author Fabyan Martin
+     * @author Adam Timberlake
      * @link https://github.com/fabyanmartin/ngContextMenu
      */
     var module = $angular.module('ngContextMenu', []);
@@ -19,6 +20,7 @@
      * @module ngContextMenu
      * @service ContextMenu
      * @author Fabyan Martin
+     * @author Adam Timberlake
      * @link https://github.com/fabyanmartin/ngContextMenu
      */
     module.factory('contextMenu', ['$rootScope', function contextMenuService($rootScope) {
@@ -39,6 +41,7 @@
      * @module ngContextMenu
      * @directive contextMenu
      * @author Fabyan Martin
+     * @author Adam Timberlake
      * @link https://github.com/fabyanmartin/ngContextMenu
      */
     module.directive('contextMenu', ['$timeout', '$interpolate', '$compile', 'contextMenu', '$templateRequest', '$sce', '$rootScope',
@@ -141,22 +144,8 @@
                         }
 
                         $templateRequest($sce.getTrustedResourceUrl(attributes.contextMenu)).then(function then(template) {
-                            var compiled,menu;
-                            if(model){
-                                compiled = $compile(template)($angular.extend(getModel()));
-                                menu = $angular.element(compiled);
-                            }
-                            else{
-                                var elem = $angular.element(template);
-                                if(elem && elem.length > 0){
-                                    for (var i = 0; i < elem.length; i++) {
-                                        if(elem[i].nodeType === 1){
-                                            menu = $angular.element(elem[i]);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
+
+                            var menu = $angular.element(template);
 
 
                             // Determine whether to append new, or replace an existing.
@@ -178,7 +167,8 @@
                                     y: scope.position.y
                                 })
                             });
-
+                            //Compile after added to the DOM so that we can correctly apply css
+                            $compile(menu)(scope);
                             scope.menu = menu;
                             scope.menu.bind('click', closeMenu);
 
