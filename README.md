@@ -3,7 +3,7 @@ ngContextMenu
 
 ![Travis](http://img.shields.io/travis/Wildhoney/ngContextMenu.svg?style=flat)
 &nbsp;
-![bower](https://badge.fury.io/hooks/github)
+![bower](http://img.shields.io/bower/v/ng-context-menu-js.svg?style=flat)
 &nbsp;
 ![License MIT](http://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)
 
