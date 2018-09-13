@@ -77,13 +77,14 @@
                  * @return {void}
                  */
                 link: function link(scope, element, attributes, model) {
+                     var overrideLeftClick = element[0].hasAttribute('context-menu-include-left-click');
 
                     if (!contextMenu.eventBound) {
 
                         // Bind to the `document` if we haven't already.
                         $document.addEventListener('click', function click(event) {
 
-                            if (event.which === KEY_LEFT) {
+                            if (event.which === KEY_LEFT && !overrideLeftClick) {
                                 contextMenu.cancelAll();
                                 scope.$apply();
                             }
@@ -176,7 +177,9 @@
 
 
                             scope.menu = parent;
-                            parent.bind('click', closeMenu);
+                            if(!overrideLeftClick){
+                                parent.bind('click', closeMenu);
+                            }
 
                             //Broadcast event so that we can have the added element without searching the dom
                             rootScope.$broadcast('context-menu/created',parent)
@@ -199,6 +202,9 @@
                     }
 
                     element.bind(attributes.contextEvent || 'contextmenu', render);
+                    if(overrideLeftClick){
+                        element.bind('click', render);
+                    }
 
                 }
 
