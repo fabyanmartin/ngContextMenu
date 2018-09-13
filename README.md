@@ -54,6 +54,18 @@ $scope.$on('context-menu/created', function (event, menu) {
 });
 ```
 
+## Other options/attributes
+
+There is an additional attribute that can be used to alter the functionality of the context menu:
+
+`context-menu-include-left-click`
+By adding this attribute to the element that already has the `data-context-menu` attribute, the context menu also binds itself to the 'click' event.  Please note, that using this attribute requires you to handle closing the context menu.
+This can be done by adding the following javascript to your code:
+
+```javascript
+$rootScope.$broadcast('context-menu/close');
+```
+
 ## Service
 
 `ngContextMenu` ships with a simple `contextMenu` service which creates the necessary relationship between all of the context menus &ndash; this allows the opening of another menu &mdash;or a click on the `document` node&mdash; to close the currently opened menu.
